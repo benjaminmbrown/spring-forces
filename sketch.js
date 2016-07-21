@@ -1,8 +1,10 @@
 var bob;
-var spring
+var spring;
 
 function setup() {
  createCanvas(640, 360);
+ bob = new Bob();
+ spring = new Spring();
 
 }
 
