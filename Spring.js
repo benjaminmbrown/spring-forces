@@ -11,8 +11,16 @@ function Spring(x_, y_, l_){
 
 	//takes end of the spring (bob in our case)
 	//computes the force of the spring on the bob
-	this.connect = function(bob){
+	this.connect = function(b){
+		var force = p5.Vector.sub(b.position, this.anchor);
+		var distance = force.mag();
+		var stretch = distance - this.restLength;
 
+
+		//F = k * stretch
+		force.normalize();
+		force.mult(-1*this.k*stretch);
+		b.applyForce(force);
 	}
 
 	//constrain bob/anchor min and max distances

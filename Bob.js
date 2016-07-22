@@ -7,14 +7,14 @@ function Bob(x_, y_){
 	this.mass = 30;
 	this.damping = 0.98; //simulate friction
 
-	this.dragOffset = createVector():
+	this.dragOffset = createVector();
 	this.dragging = false;
 
 	this.applyForce =function(force){
 		var f = force.copy();
 		f.div(this.mass);
 		this.acceleration.add(f);
-	};
+	}
 
 	//update the bob's position and acelleration
 	this.update = function(){
@@ -42,13 +42,13 @@ function Bob(x_, y_){
 		if(d<this.mass){
 			this.dragging= true;
 			this.dragOffset.x = this.position.x-mx;
-			this.dragOffset.y = this.potion.y - my;
+			this.dragOffset.y = this.position.y - my;
 		}
 	};
 	this.handleDrag = function(mx,my){
 		if(this.dragging){
-			this.position.y = mx + this.dragOffset.x;
-			this.positon.x = my + this.dragOffset.y;
+			this.position.x = mx + this.dragOffset.x;
+			this.position.y = my + this.dragOffset.y;
 		}
 	};
 	this.stopDragging = function(){
