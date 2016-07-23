@@ -25,11 +25,36 @@ function Spring(x_, y_, l_){
 
 	//constrain bob/anchor min and max distances
 	this.constrainLength = function(bob, minLength,maxLength){
+		var dir = p5.Vector.sub(bob.position, this.anchor);
+		var d = dir.mag();
 
+		if(d < minLength){
+			dir.normalize();
+			dir.mult(minLength);
+			bob.position = p5.Vector.add(this.anchor,dir);
+			bob.velocity.mult(0);
+
+		}
+		else if (d >maxLength){
+			dir.normaliz();
+			dir.mult(maxLength);
+			bob.position = p5.Vector.add(this.anchor,dir);
+			bob.velocity.mult(0);
+		}
 	}
 
 	this.display = function(){
-
+		stroke(255);
+		fill(127);
+		strokeWeight(2);
+		rectMode(CENTER);
+		rect(this.anchor.x, this.anchor.y, 10,10);
+	}
+	
+	this.displayLine = function(bob){
+		strokeWeight(2);
+		stroke(255);
+		line(bob.position.x, bob.position.y, this.anchor.x, this.anchor.y);
 	}
 	
 }
