@@ -1,41 +1,18 @@
-var bob;
-var spring;
+
+var particle;
 
 function setup() {
  createCanvas(640, 360);
- bob = new Bob();
- spring = new Spring(width/2, 10, 100);
+ setFrameRate(60)
+ particle = new Particle(width/2,20);
+
 
 }
 
 function draw(){
 	background(51);
-	var gravity = createVector(0,2);
-
-	bob.applyForce(gravity);
-
-	spring.connect(bob);
-
-
-	bob.update();
-	//draw
-
-	//spring.displayLine(bob);
-	bob.display();
-	spring.display();
-
-}
-
-function mousePressed(){
-	bob.handleClick(mouseX, mouseY)
-
-}
-
-function mouseDragged(){
-	bob.handleDrag(mouseX,mouseY)
-}
-
-function mouseReleased(){
-	bob.stopDragging()
-	
+	this.particle.run();
+	if(this.particle.isDead()){
+		this.particle = new Particle(createVector(width/2,20));
+	}
 }
